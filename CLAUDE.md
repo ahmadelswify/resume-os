@@ -24,23 +24,44 @@ resume-os/
     └── workflow.md        # Process documentation
 ```
 
-## Setup Check
+## First-Time Onboarding
 
-Before starting, verify the user has completed setup:
-1. `knowledge/profile.md` exists and is populated
-2. `knowledge/impact-brief.md` exists and is populated
-3. `resumes/base/resume.json` exists with valid resume JSON
-4. Generator dependencies are installed (`cd generator && npm install`)
+When the user first opens this project, the knowledge files will be empty templates. **Do not ask them to manually fill these in.** Instead, onboard them by asking what they have available:
 
-If any are missing, point the user to the README for setup instructions.
+> "Welcome to resume-os! To get started, I need to learn about your professional background. What can you share? For example:
+> - Paste your current resume (text, PDF, or screenshot)
+> - Link to your LinkedIn profile or personal website
+> - Point me to a GitHub repo or portfolio
+> - Just describe your experience and I'll build from there
+>
+> The more you share, the better your tailored resumes will be."
+
+### From whatever they provide, build the knowledge base:
+
+1. **`knowledge/profile.md`** — Extract their full background: work history, skills, education, projects. Include more detail than a resume would — this is the comprehensive reference.
+2. **`knowledge/impact-brief.md`** — Pull out every quantifiable achievement, metric, and outcome. Organize by role/project with tags for easy matching.
+3. **`knowledge/role-positioning.md`** — Based on the types of roles they're targeting, draft positioning angles (which skills to lead with, what to emphasize vs de-emphasize).
+4. **`resumes/base/resume.json`** — Build their general-purpose resume in the JSON format the PDF generator expects.
+
+After populating these files, generate a base PDF to confirm everything works:
+```bash
+cd generator && node generate-pdf.js
+```
+
+Show them the PDF path and confirm their base resume looks right before proceeding.
+
+### If knowledge files are already populated
+
+Skip onboarding and go straight to the tailoring workflow.
 
 ## Trigger
 
-The workflow activates when the user:
+The tailoring workflow activates when the user:
 - Pastes a job description
 - Says "tailor my resume for this"
 - Says "apply for [role]"
 - Drops a JD URL or screenshot
+- Provides a JD link
 
 ## Phase 1: Automatic Draft (no user input needed)
 

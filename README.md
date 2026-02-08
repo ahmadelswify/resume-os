@@ -2,26 +2,9 @@
 
 Drop a job description into Claude Code → get a fully tailored, single-page resume PDF.
 
-**resume-os** is a Claude Code-powered resume tailoring system. It combines your professional knowledge base with an AI agent that automatically drafts tailored resumes from job descriptions — parsing requirements, mapping your experience, and generating a print-ready PDF.
+**resume-os** is a Claude Code-powered resume tailoring system. It parses job descriptions, maps your experience to requirements, and generates print-ready PDFs — all in one shot.
 
-## How It Works
-
-1. You fill in your knowledge base (profile, achievements, positioning strategy)
-2. You set up your base resume JSON
-3. You open the project in Claude Code and paste a job description
-4. The agent automatically:
-   - Parses the JD for requirements, keywords, and themes
-   - Researches the company
-   - Maps your experience to each requirement
-   - Drafts a fully tailored resume
-   - Presents it for your review
-5. You approve (or tweak), and the agent generates a PDF
-
-No back-and-forth. No manual editing. One-shot draft, then iterate.
-
-## Setup
-
-### 1. Clone and install
+## Quick Start
 
 ```bash
 git clone https://github.com/ahmadelswify/resume-os.git
@@ -29,34 +12,43 @@ cd resume-os/generator
 npm install
 ```
 
-### 2. Add fonts
-
-Download [Roboto](https://fonts.google.com/specimen/Roboto) and place in `generator/public/fonts/`:
+Add [Roboto](https://fonts.google.com/specimen/Roboto) font files to `generator/public/fonts/`:
 - `Roboto-Regular.ttf`
 - `Roboto-Bold.ttf`
 
-### 3. Fill in your knowledge base
-
-Edit these files with your information:
-
-| File | What to include |
-|------|----------------|
-| `knowledge/profile.md` | Full professional background, skills, experience |
-| `knowledge/impact-brief.md` | Quantified achievements with metrics (your "bullet bank") |
-| `knowledge/role-positioning.md` | How to frame your experience for different role types |
-
-### 4. Create your base resume
-
-Edit `resumes/base/resume.json` with your general-purpose resume. This is the starting template the agent modifies for each application. See the [JSON schema](#resume-json-schema) below.
-
-### 5. Use it
+Then open the project in Claude Code:
 
 ```bash
 cd resume-os
 claude
 ```
 
-Then paste a job description. The agent takes it from there.
+That's it. The agent will onboard you from there.
+
+## How It Works
+
+### First time: The agent builds your knowledge base
+
+You don't need to fill in any files manually. When you first open the project, the agent asks what you have available:
+
+- **Paste your current resume** (text, PDF, or screenshot)
+- **Link a repo or portfolio** the agent can read
+- **Share your LinkedIn** or any professional context
+- **Just describe your experience** in plain text
+
+From whatever you provide, the agent builds your knowledge base — a detailed profile, a library of quantified achievements, and positioning strategies by role type. It also creates your base resume JSON and generates a PDF to confirm everything looks right.
+
+### Every time after: Drop a JD
+
+Once your knowledge base exists, just paste a job description. The agent automatically:
+
+1. **Parses the JD** — role, requirements, keywords, themes
+2. **Researches the company** — culture, values, recent news
+3. **Maps your experience** — finds the best achievement for each requirement
+4. **Drafts a full resume** — rewrites every section, tailored to the role
+5. **Presents it for review** — with a mapping table and gap analysis
+
+You approve (or tweak), and the agent saves the JSON and generates the PDF.
 
 ## Project Structure
 
@@ -65,12 +57,12 @@ resume-os/
 ├── CLAUDE.md                 # Agent instructions (the brain)
 ├── knowledge/
 │   ├── profile.md            # Your professional background
-│   ├── impact-brief.md       # Metrics & achievements library
+│   ├── impact-brief.md       # Quantified achievements library
 │   └── role-positioning.md   # Positioning strategy by role type
 ├── resumes/
 │   ├── base/
 │   │   └── resume.json       # General-purpose base resume
-│   ├── tailored/             # Tailored JSONs (one per application)
+│   ├── tailored/             # One JSON per application
 │   └── pdf/                  # Generated PDFs
 ├── generator/
 │   ├── generate-pdf.js       # PDF renderer
@@ -80,9 +72,18 @@ resume-os/
     └── workflow.md           # Detailed process documentation
 ```
 
+### What the agent builds for you
+
+| File | Purpose |
+|------|---------|
+| `knowledge/profile.md` | Comprehensive professional background — more detailed than a resume |
+| `knowledge/impact-brief.md` | Every quantifiable achievement, organized by role with tags for matching |
+| `knowledge/role-positioning.md` | How to frame your experience for different role types |
+| `resumes/base/resume.json` | Your general-purpose resume (starting template for all tailored versions) |
+
 ## PDF Generator CLI
 
-You can also generate PDFs directly:
+The agent runs this automatically, but you can also use it directly:
 
 ```bash
 cd generator
@@ -126,14 +127,14 @@ node generate-pdf.js --input company-role.json --output Company-Role --top 12 --
       "company": "Company",
       "jobTitle": "Title",
       "date": "Jan 2022 - Present",
-      "descriptions": ["Achievement bullets..."]
+      "descriptions": ["Achievement bullet with metrics..."]
     }
   ],
   "projects": [
     {
       "project": "Name",
       "date": "2023",
-      "descriptions": ["Description..."]
+      "descriptions": ["What you built and the impact..."]
     }
   ],
   "educations": [
