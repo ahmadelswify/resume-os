@@ -26,7 +26,22 @@ resume-os/
 
 ## First-Time Onboarding
 
-When the user first opens this project, the knowledge files will be empty templates. **Do not ask them to manually fill these in.** Instead, onboard them by asking what they have available:
+When the user first opens this project, check two things before anything else:
+
+### 1. Font check
+
+If `generator/public/fonts/Roboto-Regular.ttf` or `generator/public/fonts/Roboto-Bold.ttf` are missing, download them:
+
+```bash
+curl -sL "https://github.com/google/fonts/raw/refs/heads/main/ofl/roboto/static/Roboto-Regular.ttf" -o generator/public/fonts/Roboto-Regular.ttf
+curl -sL "https://github.com/google/fonts/raw/refs/heads/main/ofl/roboto/static/Roboto-Bold.ttf" -o generator/public/fonts/Roboto-Bold.ttf
+```
+
+Verify they downloaded correctly by checking they are valid font files (not HTML error pages). If the download fails, ask the user to manually download Roboto from https://fonts.google.com/specimen/Roboto and place `Roboto-Regular.ttf` and `Roboto-Bold.ttf` in `generator/public/fonts/`.
+
+### 2. Knowledge base check
+
+When the knowledge files are empty templates, **do not ask the user to manually fill them in.** Instead, onboard them by asking what they have available:
 
 > "Welcome to resume-os! To get started, I need to learn about your professional background. What can you share? For example:
 > - Paste your current resume (text, PDF, or screenshot)

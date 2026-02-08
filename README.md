@@ -1,56 +1,74 @@
 # resume-os
 
-Drop a job description into Claude Code → get a fully tailored, single-page resume PDF.
+Drop a job description into [Claude Code](https://docs.anthropic.com/en/docs/claude-code) → get a fully tailored, single-page resume PDF.
 
-**resume-os** is a Claude Code-powered resume tailoring system. It parses job descriptions, maps your experience to requirements, and generates print-ready PDFs — all in one shot.
+Build your knowledge base once. Apply to as many jobs as you want — each one gets a custom-tailored resume in minutes, not hours.
+
+## How It Works
+
+### First time: share your background
+
+Open the project in Claude Code and share whatever you have — a current resume, a LinkedIn profile, a GitHub repo, or just a plain-text description of your experience. The agent builds your entire knowledge base from it.
+
+```
+You:   Here's my current resume [paste/upload]
+Agent: I've built your knowledge base and base resume.
+       Check resumes/pdf/Your-Name-Resume.pdf — does everything look right?
+```
+
+### Every time after: drop a JD
+
+Paste a job description. The agent does the rest.
+
+```
+You:   [pastes job description for Senior PM at Stripe]
+Agent: Here's your tailored resume:
+
+       Mapping table:
+       | JD Requirement              | Your Bullet                        | Strength |
+       | Cross-functional leadership  | Led 3 teams across eng + design... | Strong   |
+       | Data-driven decisions        | Built analytics pipeline that...   | Strong   |
+       | Payments experience          | (gap — framed via fintech work)    | Stretch  |
+
+       Full draft: [all sections — summary, skills, experience, projects, education]
+
+       Ready to generate the PDF?
+```
+
+You review, tweak if needed, and the agent saves the JSON and generates a single-page PDF.
+
+**That's the whole workflow.** One knowledge base, unlimited tailored resumes.
+
+## Requirements
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
+- Node.js 18+
+- Internet connection (for font download and company research)
 
 ## Quick Start
 
+**1. Clone and install**
+
 ```bash
 git clone https://github.com/ahmadelswify/resume-os.git
-cd resume-os/generator
-npm install
+cd resume-os/generator && npm install
 ```
 
-Add [Roboto](https://fonts.google.com/specimen/Roboto) font files to `generator/public/fonts/`:
-- `Roboto-Regular.ttf`
-- `Roboto-Bold.ttf`
-
-Then open the project in Claude Code:
+**2. Start**
 
 ```bash
 cd resume-os
 claude
 ```
 
-That's it. The agent will onboard you from there.
+The agent will download the required fonts, ask about your background, and take it from there.
 
-## How It Works
+---
 
-### First time: The agent builds your knowledge base
+## Reference
 
-You don't need to fill in any files manually. When you first open the project, the agent asks what you have available:
-
-- **Paste your current resume** (text, PDF, or screenshot)
-- **Link a repo or portfolio** the agent can read
-- **Share your LinkedIn** or any professional context
-- **Just describe your experience** in plain text
-
-From whatever you provide, the agent builds your knowledge base — a detailed profile, a library of quantified achievements, and positioning strategies by role type. It also creates your base resume JSON and generates a PDF to confirm everything looks right.
-
-### Every time after: Drop a JD
-
-Once your knowledge base exists, just paste a job description. The agent automatically:
-
-1. **Parses the JD** — role, requirements, keywords, themes
-2. **Researches the company** — culture, values, recent news
-3. **Maps your experience** — finds the best achievement for each requirement
-4. **Drafts a full resume** — rewrites every section, tailored to the role
-5. **Presents it for review** — with a mapping table and gap analysis
-
-You approve (or tweak), and the agent saves the JSON and generates the PDF.
-
-## Project Structure
+<details>
+<summary>Project structure</summary>
 
 ```
 resume-os/
@@ -69,21 +87,17 @@ resume-os/
 │   ├── package.json
 │   └── public/fonts/         # Roboto TTF files
 └── examples/
-    └── workflow.md           # Detailed process documentation
+    └── workflow.md           # Detailed process docs
 ```
 
-### What the agent builds for you
+The agent creates and manages the knowledge files and resume JSONs for you. You never need to edit them manually.
 
-| File | Purpose |
-|------|---------|
-| `knowledge/profile.md` | Comprehensive professional background — more detailed than a resume |
-| `knowledge/impact-brief.md` | Every quantifiable achievement, organized by role with tags for matching |
-| `knowledge/role-positioning.md` | How to frame your experience for different role types |
-| `resumes/base/resume.json` | Your general-purpose resume (starting template for all tailored versions) |
+</details>
 
-## PDF Generator CLI
+<details>
+<summary>PDF generator CLI</summary>
 
-The agent runs this automatically, but you can also use it directly:
+The agent runs this automatically, but you can use it directly:
 
 ```bash
 cd generator
@@ -106,7 +120,10 @@ node generate-pdf.js --input company-role.json --output Company-Role --top 12 --
 | `--top` | `18` | Top margin in pt |
 | `--contact-gap` | `5` | Gap between name and contact info in pt |
 
-## Resume JSON Schema
+</details>
+
+<details>
+<summary>Resume JSON schema</summary>
 
 ```json
 {
@@ -149,11 +166,7 @@ node generate-pdf.js --input company-role.json --output Company-Role --top 12 --
 }
 ```
 
-## Requirements
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
-- Node.js 18+
-- Roboto font files (Regular + Bold TTF)
+</details>
 
 ## License
 
