@@ -1,0 +1,56 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "location": "City, State",
+    "url": "linkedin.com/in/yourname",
+    "summary": "I am a [role type] with [X years] of experience in [domain]. I specialize in [key skills] and have a track record of [key outcome]. Currently looking for [what you want next]."
+  },
+  "skills": {
+    "descriptions": [
+      "Category 1: skill1, skill2, skill3, skill4",
+      "Category 2: skill5, skill6, skill7, skill8",
+      "Category 3: skill9, skill10, skill11, skill12"
+    ]
+  },
+  "workExperiences": [
+    {
+      "company": "Company Name",
+      "jobTitle": "Your Title",
+      "date": "Jan 2022 - Present",
+      "descriptions": [
+        "Achievement bullet with quantified metric demonstrating impact",
+        "Another achievement showing leadership or technical depth",
+        "Third bullet highlighting cross-functional collaboration",
+        "Fourth bullet showing business or customer impact"
+      ]
+    },
+    {
+      "company": "Previous Company",
+      "jobTitle": "Previous Title",
+      "date": "Jun 2019 - Dec 2021",
+      "descriptions": [
+        "Key achievement from this role with specific numbers",
+        "Another accomplishment showing growth or scale"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "project": "Project Name",
+      "date": "2023",
+      "descriptions": [
+        "What you built, the tech used, and the impact it had"
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "school": "University Name",
+      "degree": "Bachelor of Science, Computer Science",
+      "date": "",
+      "gpa": "",
+      "descriptions": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "resume-os-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PDF generator for resume-os",
+  "scripts": {
+    "generate": "node generate-pdf.js",
+    "generate:help": "echo 'Usage: node generate-pdf.js [--input <json>] [--output <suffix>] [--padding <pt>] [--top <pt>] [--contact-gap <pt>]'"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^3.1.10",
+    "react": "^18.2.0"
+  }
+}

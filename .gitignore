@@ -1,0 +1,24 @@
+# Dependencies
+generator/node_modules/
+
+# Generated PDFs (optional — uncomment to track them)
+# resumes/pdf/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Font files (users download their own)
+generator/public/fonts/*.ttf
+
+# Personal knowledge (users fill in their own)
+# Uncomment these if you want to keep your data private:
+# knowledge/profile.md
+# knowledge/impact-brief.md
+# knowledge/role-positioning.md
+# resumes/base/resume.json
+# resumes/tailored/
