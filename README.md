@@ -24,7 +24,7 @@ No back-and-forth. No manual editing. One-shot draft, then iterate.
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/yourname/resume-os.git
+git clone https://github.com/ahmadelswify/resume-os.git
 cd resume-os/generator
 npm install
 ```
